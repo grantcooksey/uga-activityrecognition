@@ -17,7 +17,7 @@ class Parser(object):
         data = pd.read_csv(file_name, names=["tick", "timestamp",
                                              "activity", "x", "y",
                                              "z", "user"])
-        split_frames = data['activity'].unique().tolist()
+        split_frames = data['activity'].unique().tolist() # Splits files by activity
         for activity in split_frames:
             activity_df = data.loc[data.activity == activity]
             activity_df.to_csv(str(activity) + '.csv', header=False, index=False)
