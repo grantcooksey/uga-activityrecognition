@@ -9,7 +9,6 @@ class Parser(object):
         new_path = os.path.join('.', file_name[:-4])
         if not os.path.exists(new_path):
             os.makedirs(new_path)
-            os.chdir(new_path)
         else:
             print 'Error: A directory with the name ' + new_path + \
                   ' already exists.'
@@ -18,6 +17,7 @@ class Parser(object):
         data = pd.read_csv(file_name, names=["tick", "timestamp",
                                              "activity", "x", "y",
                                              "z", "user"], index_col=False)
+        os.chdir(new_path)  # place files in new directory
         split_frames = data['activity'].unique().tolist()  # Splits files by activity
         for activity in split_frames:
             activity_df = data.loc[data.activity == activity]
