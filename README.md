@@ -59,3 +59,5 @@ the activities to search for are 13 and 17, the command would be
 ### Future Work
  
  Create a new driver to parse multiple user activity data files at once.
+ 
+ Search functionality for matching users between activities
