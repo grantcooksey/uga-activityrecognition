@@ -25,6 +25,13 @@ class Parser(object):
                                header=False, index=False)
 
     @staticmethod
+    def get_list_of_activities(file_name):
+        data = pd.read_csv(file_name, names=["tick", "timestamp",
+                                             "activity", "x", "y",
+                                             "z", "user"], index_col=False)
+        return data['activity'].unique().tolist()
+
+    @staticmethod
     def lookup_activity(activity_num):
         if activity_num == 2:
             return '2_male_walk_hard'
