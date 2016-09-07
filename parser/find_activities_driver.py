@@ -22,7 +22,7 @@ def main():
             if int(activity) in activities_for_user:
                 user_dict[activity].append(filename[len(sys.argv[1]):-4])
     for x in user_dict:
-        print x, user_dict[x]
+        print Parser.lookup_activity(int(x)), user_dict[x]
 
 if __name__ == '__main__':
     main()
