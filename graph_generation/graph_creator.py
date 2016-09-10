@@ -5,41 +5,46 @@ import matplotlib.pyplot as plt
 import sys
 
 def main():
-    if not len(sys.argv) == 4:
-        print('Usage: graph_creator.py <path_to_file> <directory_path_data_files> <number_of_input_files>')
+    if not len(sys.argv) == 5:
+        print('Usage: graph_creator.py <path_to_file> <directory_path_data_files> <activity_number> <number_of_input_files>')
         sys.exit(1)
+    
     # master file contains the file names on each line
     master_file = sys.argv[1]
+    
     # directory contains the path where the data is stored
     directory = sys.argv[2]
-    #number of input files in master file
-    number_of_input_files = int(sys.argv[3])
+    
+    # activity number
+    activity_number = int(sys.argv[3])
+    
+    # number of input files in master file
+    number_of_input_files = int(sys.argv[4])
+    
     # open master file
     # then open directory and do stuff for each file name provided in the master file
     count = 1
     with open(master_file) as master:
-        fig1 = plt.figure(figsize=(10,30))
-        fig1.subplots_adjust(hspace=1)
-        
+        fig = plt.figure(figsize=(10,30))
+        fig.subplots_adjust(hspace=1)
+        fig.suptitle("Activity " + str(activity_number), fontsize= 14)
+    
         for master_line in master:
             with open(directory + master_line.strip() + '.csv', 'rU') as f:
-                file_data = np.genfromtxt(f, usecols=(0,2,3,4), delimiter = ',', names=['tick', 'activity', 'x', 'y'])
+                file_data_frame = pd.DataFrame(np.genfromtxt(f, usecols=(0,2,3,4), delimiter = ',', names=['tick', 'activity', 'x', 'y']))
 
-                file_data_frame = pd.DataFrame(file_data)
-                file_data_frame_17_2000 = file_data_frame[file_data_frame.activity == 17][500:2500]
-                file_data_frame_17_2000['index'] = range(1, len(file_data_frame_17_2000) + 1)
-                file_data_frame_20_2000 = file_data_frame[file_data_frame.activity == 20][500:2500]
-                file_data_frame_20_2000['index'] = range(1, len(file_data_frame_20_2000) + 1)
+                # see if the user has completed that activity and make new data frame
+                file_data_frame_activity = file_data_frame[file_data_frame.activity == activity_number][1500:3500]
+                # make this extra column to index value from 0 to n instead of what given in data
+                file_data_frame_activity['index'] = range(1, len(file_data_frame_activity) + 1)
 
-                tick_17 = file_data_frame_17_2000['index']
-                activity_17 = file_data_frame_17_2000['activity']
-                X1_17 = file_data_frame_17_2000['x']
-                Y1_17 = file_data_frame_17_2000['y']
+                tick = file_data_frame_activity['index']
+                X = file_data_frame_activity['x']
                 
-                fig1.text(0.5, 0.04, 'Ticks', ha='center')
-                fig1.text(0.04, 0.5, 'X-Axis', va='center', rotation='vertical')
-                ax = fig1.add_subplot( 100 * number_of_input_files + 10 + count)
-                ax.plot(tick_17, X1_17, 'r')
+                fig.text(0.5, 0.04, 'Ticks', ha='center')
+                fig.text(0.04, 0.5, 'X-Axis', va='center', rotation='vertical')
+                ax = fig.add_subplot( 100 * number_of_input_files + 10 + count)
+                ax.plot(tick, X, 'r')
                 plt.title('Person ' + str(master_line.strip()))
                 count += 1
 
@@ -47,6 +52,5 @@ def main():
         # plt.savefig('output.png')
         # plt.clf()
                 
-
 if __name__ == "__main__":
 	main()
