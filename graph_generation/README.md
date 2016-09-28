@@ -12,4 +12,6 @@
 
 **number_of_input_files** = number of files in path to file
 
+**axis** = which axis you want to plot (x or y or z)
+
 It creates one plot per instance. If the user has not done that activity, the subplot will be empty.
