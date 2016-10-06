@@ -10,8 +10,8 @@ class Parser(object):
         if not os.path.exists(new_path):
             os.makedirs(new_path)
         else:
-            print 'Error: A directory with the name ' + new_path + \
-                  ' already exists.'
+            print('Error: A directory with the name ' + new_path + \
+                  ' already exists.')
             sys.exit(1)
         
         data = pd.read_csv(file_name, names=["tick", "timestamp",

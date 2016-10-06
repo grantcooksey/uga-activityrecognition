@@ -15,6 +15,8 @@ project.
  Instructions for installation can be found at 
  
  http://pandas.pydata.org/pandas-docs/stable/install.html
+
+ This project uses python 3.x
  
 ### Parsing
 
