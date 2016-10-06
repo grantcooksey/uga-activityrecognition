@@ -63,3 +63,13 @@ the activities to search for are 13 and 17, the command would be
  Create a new driver to parse multiple user activity data files at once.
  
  Search functionality for matching users between activities
+
+***
+
+## Period Lengths
+
+ The shaplet-length directory contains jupyter notebooks that experiment
+ with different techniques for searching for the length of periods.
+ `period-search.ipynb` is more of an experimental environment while
+ `comparing_periods.ipynb` demonstrates some of the more successful
+ methods of searching for a shaplet length.
