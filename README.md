@@ -73,3 +73,15 @@ the activities to search for are 13 and 17, the command would be
  `period-search.ipynb` is more of an experimental environment while
  `comparing_periods.ipynb` demonstrates some of the more successful
  methods of searching for a shaplet length.
+
+
+## Shaplet Generation
+
+ The shaplet euclidean distance generator script is called 'shaplet_generator.py'
+ and requires 'shaplet_util.py' in the same file.  Numpy, pandas, and
+ [peakutils](http://pythonhosted.org/PeakUtils/) need to be installed. I have set
+ it to run on user 144's walking data but you can change that if you want.  Just verify that
+ that it gets the correct length and you are getting the correct side.  My
+ 'play_shaplet_gen' notebook should make this easy to check.  The path for the
+ data file is set for the same directory but this can be changed in the first
+ line in the main method.
