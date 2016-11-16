@@ -38,7 +38,7 @@ def main():
     shaplet_len = period['upper'].median()
 
     # For testing purposes only
-    #walking = walking.iloc[0:200]
+    walking = walking.iloc[0:200]
 
     df = pd.DataFrame(data=[], index=np.arange(0, walking['x'].index.size - shaplet_len, 20),
                       columns=walking.index)
